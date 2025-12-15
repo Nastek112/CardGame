@@ -11,7 +11,7 @@
         /// <summary>Лечит цель.</summary>
         Heal,
 
-        /// <summary>Увеличивает атаку существа (баф).</summary>
+        /// <summary>Увеличивает атаку существа.</summary>
         BuffAttack
     }
 }

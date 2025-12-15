@@ -42,7 +42,7 @@ namespace CardGame.Core.Game
             new Target(TargetType.Creature, playerIndex, creatureIndex);
 
         /// <summary>
-        /// Проверка корректности цели (можно вызывать в Engine перед применением).
+        /// Проверка корректности цели.
         /// </summary>
         public void Validate()
         {
@@ -53,6 +53,9 @@ namespace CardGame.Core.Game
             {
                 if (CreatureIndex != null)
                     throw new InvalidOperationException("Для цели Player нельзя задавать CreatureIndex.");
+                if (PlayerIndex < 0)
+                    throw new ArgumentOutOfRangeException(nameof(PlayerIndex), "Индекс игрока не может быть отрицательным.");
+
             }
             else // Creature
             {
