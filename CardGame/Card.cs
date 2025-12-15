@@ -2,13 +2,14 @@
 
 namespace CardGame.Core.Cards
 {
-
+    /// Базовый класс карты — содержит общие свойства, 
+    /// которые есть у всех карт (название, стоимость маны).
     public abstract class Card
     {
-        /// <summary>Название карты</summary>
+        /// Название карты</summary>
         public string Name { get; init; } = string.Empty;
 
-        /// <summary>Стоимость розыгрыша.</summary>
+        /// Стоимость розыгрыша (мана)</summary>
         public int ManaCost { get; init; }
 
         protected Card() { }
