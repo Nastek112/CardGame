@@ -7,26 +7,19 @@ namespace CardGame.Core.Game
     public sealed class PlayerState
     {
         public string Name { get; set; } = string.Empty;
-
         public int MaxHealth { get; set; } = 20;
         public int Health { get; set; } = 20;
 
-        public int MaxMana { get; set; } = 0;
-        public int Mana { get; set; } = 0;
+        public int MaxMana { get; set; }
+        public int Mana { get; set; }
 
         public List<Card> Hand { get; set; } = new();
         public List<CreatureCard> Board { get; set; } = new();
 
-        // Для JSON-десериализации
         public PlayerState() { }
 
         public PlayerState(string name, int maxHealth = 20)
         {
-            if (string.IsNullOrWhiteSpace(name))
-                throw new ArgumentException("Имя игрока не может быть пустым.", nameof(name));
-            if (maxHealth <= 0)
-                throw new ArgumentOutOfRangeException(nameof(maxHealth), "Максимальное здоровье должно быть > 0.");
-
             Name = name;
             MaxHealth = maxHealth;
             Health = maxHealth;

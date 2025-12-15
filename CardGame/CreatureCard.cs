@@ -2,30 +2,19 @@
 
 namespace CardGame.Core.Cards
 {
-    /// 
-    /// Карта-сущность: имеет атаку и здоровье.
-    /// </summary>
     public sealed class CreatureCard : Card
     {
-        /// Текущая атака существа.</summary>
         public int Attack { get; set; }
-
-        /// Текущее здоровье (меняется в бою).</summary>
         public int Health { get; set; }
-
-        /// Максимальное здоровье (нужно, чтобы лечение не “улетало” в бесконечность).</summary>
         public int MaxHealth { get; set; }
 
-        // Нужен для десериализации JSON
         public CreatureCard() { }
 
         public CreatureCard(string name, int manaCost, int attack, int maxHealth)
             : base(name, manaCost)
         {
-            if (attack < 0)
-                throw new ArgumentOutOfRangeException(nameof(attack), "Атака не может быть отрицательной.");
-            if (maxHealth <= 0)
-                throw new ArgumentOutOfRangeException(nameof(maxHealth), "Максимальное здоровье должно быть > 0.");
+            if (attack < 0) throw new ArgumentOutOfRangeException(nameof(attack));
+            if (maxHealth <= 0) throw new ArgumentOutOfRangeException(nameof(maxHealth));
 
             Attack = attack;
             MaxHealth = maxHealth;
@@ -36,17 +25,13 @@ namespace CardGame.Core.Cards
 
         public void TakeDamage(int amount)
         {
-            if (amount < 0)
-                throw new ArgumentOutOfRangeException(nameof(amount), "Урон не может быть отрицательным.");
-
+            if (amount < 0) throw new ArgumentOutOfRangeException(nameof(amount));
             Health = Math.Max(0, Health - amount);
         }
 
         public void Heal(int amount)
         {
-            if (amount < 0)
-                throw new ArgumentOutOfRangeException(nameof(amount), "Лечение не может быть отрицательным.");
-
+            if (amount < 0) throw new ArgumentOutOfRangeException(nameof(amount));
             Health = Math.Min(MaxHealth, Health + amount);
         }
 

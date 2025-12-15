@@ -1,17 +1,12 @@
 ﻿using System;
 
-namespace CardGame.Core.Cards
+namespace CardGame.Core.
 { 
     /// Тип заклинания.
     public enum SpellType
     {
-        /// Наносит урон цели.</summary>
         Damage,
-
-        /// Лечит цель.</summary>
         Heal,
-
-        /// Увеличивает атаку существа.</summary>
         BuffAttack
     }
 
