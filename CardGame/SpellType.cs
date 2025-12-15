@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace CardGame.Core.
-{ 
-    /// Тип заклинания.
+namespace CardGame.Core.Cards
+{
+    /// Типы заклинаний.
     public enum SpellType
     {
         Damage,
@@ -10,20 +10,20 @@ namespace CardGame.Core.
         BuffAttack
     }
 
-
-    /// Карта-заклинание: тип (урон/лечение/баф) и сила эффекта.
+    /// Карта-заклинание.
     public sealed class SpellCard : Card
     {
         public SpellType Type { get; set; }
         public int Value { get; set; }
 
+        // Нужен для JSON-десериализации
         public SpellCard() { }
 
         public SpellCard(string name, int manaCost, SpellType type, int value)
             : base(name, manaCost)
         {
             if (value <= 0)
-                throw new ArgumentOutOfRangeException(nameof(value), "Значение эффекта должно быть > 0.");
+                throw new ArgumentOutOfRangeException(nameof(value));
 
             Type = type;
             Value = value;
