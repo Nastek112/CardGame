@@ -2,18 +2,18 @@
 
 namespace CardGame.Core.Cards
 {
-    /// <summary>
+    /// 
     /// Карта-сущность: имеет атаку и здоровье.
     /// </summary>
     public sealed class CreatureCard : Card
     {
-        /// <summary>Текущая атака существа.</summary>
+        /// Текущая атака существа.</summary>
         public int Attack { get; set; }
 
-        /// <summary>Текущее здоровье (меняется в бою).</summary>
+        /// Текущее здоровье (меняется в бою).</summary>
         public int Health { get; set; }
 
-        /// <summary>Максимальное здоровье (нужно, чтобы лечение не “улетало” в бесконечность).</summary>
+        /// Максимальное здоровье (нужно, чтобы лечение не “улетало” в бесконечность).</summary>
         public int MaxHealth { get; set; }
 
         // Нужен для десериализации JSON

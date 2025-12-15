@@ -2,26 +2,23 @@
 
 namespace CardGame.Core.Game
 {
-    /// <summary>
+
     /// Тип цели для применения заклинаний/действий.
-    /// </summary>
     public enum TargetType
     {
         Player,
         Creature
     }
 
-    /// <summary>
-    /// Цель: либо игрок (PlayerIndex), либо существо на столе игрока (PlayerIndex + CreatureIndex).
-    /// </summary>
+    /// Цель: либо игрок (PlayerIndex), либо существо на столе игрока (PlayerIndex + CreatureIndex)
     public sealed class Target
     {
         public TargetType Type { get; set; }
 
-        /// <summary>Индекс игрока (обычно 0 или 1).</summary>
+        /// Индекс игрока (обычно 0 или 1)
         public int PlayerIndex { get; set; }
 
-        /// <summary>Индекс существа на столе игрока. Используется только для TargetType.Creature.</summary>
+        /// Индекс существа на столе игрока. Используется только для TargetType.Creature
         public int? CreatureIndex { get; set; }
 
         // Нужен для JSON-десериализации
@@ -41,9 +38,7 @@ namespace CardGame.Core.Game
         public static Target Creature(int playerIndex, int creatureIndex) =>
             new Target(TargetType.Creature, playerIndex, creatureIndex);
 
-        /// <summary>
         /// Проверка корректности цели.
-        /// </summary>
         public void Validate()
         {
             if (PlayerIndex < 0)
