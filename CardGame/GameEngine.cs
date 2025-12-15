@@ -85,13 +85,26 @@ namespace CardGame.Core.Engine
 
             var targetPlayer = state.Players[target.PlayerIndex];
 
-            // Обработка разных типов заклинаний
             if (spell.Type == SpellType.Damage)
             {
                 if (target.Type == TargetType.Player)
+                {
                     targetPlayer.TakeDamage(spell.Value);
+                }
                 else if (target.CreatureIndex.HasValue)
-                    targetPlayer.Board[target.CreatureIndex.Value].TakeDamage(spell.Value);
+                {
+                    int idx = target.CreatureIndex.Value;
+                    var creature = targetPlayer.Board[idx];
+
+                    // Наносим урон
+                    creature.TakeDamage(spell.Value);
+
+                    // Если мёртв — удаляем
+                    if (creature.IsDead)
+                    {
+                        targetPlayer.Board.RemoveAt(idx);
+                    }
+                }
             }
             else if (spell.Type == SpellType.Heal)
             {
